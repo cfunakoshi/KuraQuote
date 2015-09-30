@@ -1,10 +1,28 @@
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
+<div class="profile">
       <h1>
         <%= @user.name %>
         <%= @user.email %>
       </h1>
-    </section>
-  </aside>
+</div>
+  
+       <div class="col-md-3">
+      <ul class="nav nav-pill nav-stacked">
+        <li class="active"><%= link_to "General", '#general', :role => "pill", :data => {:toggle => "pill"} %></li>
+        <li><%= link_to "General", '#general', :role => "pill", :data => {:toggle => "pill"} %></li>
+        <li><%= link_to "General", '#general', :role => "pill", :data => {:toggle => "pill"} %></li>
+        <li><%= link_to "General", '#general', :role => "pill", :data => {:toggle => "pill"} %></li>
+      </ul>
+    </div>
+    <div class="clearfix visible-lg"></div>
+
+<div class="row">
+    <div class="col-md-3">
+      <p>test test test test test </p>
+    </div>
+    <div class="col-md-3"> 
+      <p>test test test test test test</p>
+    </div>
+    <div class="col-md-3"> 
+      <p>test test test test test test test</p>
+    </div>
 </div>
