@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    attr_accessor :age
     attr_accessor :remember_token, :activation_token
     before_save { self.email = email.downcase }
 
@@ -35,5 +36,9 @@ end
   
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+    def age
+      Time.now - self.birthday
   end
 end

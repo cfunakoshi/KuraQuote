@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
  
+  get 'insurer/index'
+
+  get 'agents/new'
+
+  get 'agents/index'
+
   root 'staticpages#start'
   get 'sessions/new'
   get 'users/new'

@@ -154,10 +154,6 @@ input {
   }
 }
 
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
-}
 
 .table1 th, body{
   text-align: center;
@@ -166,4 +162,16 @@ input {
 .fit {
   padding-left: 5em;
   padding-right: 5em;
+}
+
+
+#profilehead{
+  width: 30%;
+  float: left;
+}
+
+#profilebody{
+  width: 50%;
+  float: right;
+  padding-top: 5em;
 }

@@ -1,6 +1,10 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
+    <% if logged_in? %>
     <%= link_to "KuraQuote", home_path, id: "logo" %>
+    <% else %>
+    <%= link_to "KuraQuote", root_path, id: "logo" %>
+    <% end %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
