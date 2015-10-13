@@ -9,16 +9,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])    
+      @user = User.find(params[:id])
   end
   
    def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to KuraQuote!"
-      redirect_to @user
+      UserMailer.registration_confirmation(@user).deliver
+      flash[:success] = "Please confirm your email address to continue"
+      redirect_to root_url
     else
+      flash[:error] = "Oops, something went wrong!"
       render 'new'
     end
   end
@@ -46,6 +47,19 @@ class UsersController < ApplicationController
     flash[:success] = "User Deleted"
     redirect_to users_url
   end
+  
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to KuraQuote! Your email has been confirmed.
+      Please log in to continue."
+      redirect_to login_url
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
+end
   
    private
 

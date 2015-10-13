@@ -1,4 +1,5 @@
 <% provide(:title, 'All users') %>
+<% if current_user.admin? %>
 <h1>Clients</h1>
 
 <%= will_paginate %>
@@ -20,8 +21,7 @@
       </td>
       <td><%= link_to user.email, user %><% end %></td>
         <% if current_user.admin? && !current_user?(user) %>
-          <td><%= link_to "delete", user, method: :delete,
-data: { confirm: "You sure?" } %></td>
+      <td><%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %></td>
         <% end %>
       </td>
     </tr>
@@ -31,3 +31,7 @@ data: { confirm: "You sure?" } %></td>
 </div>
 
 <%= will_paginate %>
+
+<% else %>
+<%= render "shared/errorpage_message" %>
+ <% end %>
