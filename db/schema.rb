@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014021523) do
+ActiveRecord::Schema.define(version: 20151014082245) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,6 +26,74 @@ ActiveRecord::Schema.define(version: 20151014021523) do
     t.integer  "zipcode"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "bodilyinjuries", force: :cascade do |t|
+    t.text     "limit"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "collisions", force: :cascade do |t|
+    t.integer  "deductible"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comprehensives", force: :cascade do |t|
+    t.integer  "deductible"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coverages", force: :cascade do |t|
+    t.text     "bodilyinjury"
+    t.text     "propertydamage"
+    t.text     "uninsuredunstacked"
+    t.text     "uninsuredstacked"
+    t.text     "underinsuredunstacked"
+    t.text     "underinsuredstacked"
+    t.text     "piprotection"
+    t.integer  "pideductible"
+    t.integer  "collision"
+    t.integer  "comprehensive"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "user_id"
+  end
+
+  create_table "piprotections", force: :cascade do |t|
+    t.text     "limit"
+    t.integer  "deductible"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "propertydamages", force: :cascade do |t|
+    t.text     "limit"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "undermotorists", force: :cascade do |t|
+    t.text     "unstacked"
+    t.text     "stacked"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "unmotorists", force: :cascade do |t|
+    t.text     "unstacked"
+    t.text     "stacked"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

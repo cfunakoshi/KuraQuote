@@ -1,0 +1,14 @@
+<% if @coverage == nil %>
+<%= link_to "Choose Preferred Policy", coveragenew_path, class: "btn btn-lg btn-primary" %>
+ <% else %>
+           <table class="table table-bordered">
+             <tr><td><b>Bodily Injury:</b></td><td><%= @coverage.bodilyinjury %></td></tr>
+             <tr><td><b>Property Damage:</b></td><td><%= @coverage.propertydamage %></tr>
+             <tr><td><b>Uninsured Motorist:</b></td><td><%= @coverage.uninsuredunstacked %></tr>
+             <tr><td><b>Underinsured Motorists:</b></td><td><%= @coverage.underinsuredunstacked %></tr>
+             <tr><td><b>Personal Injury Protection:</b></td><td><%= @coverage.piprotection %></tr>
+             <tr><td><b>Collision:</b></td><td><%= @coverage.collision %></tr>
+             <tr><td><b>Comprehensive:</b></td><td><%= @coverage.comprehensive %></tr>
+            </table>
+<%= link_to "Edit Policy", coverageedit_path, class: "btn btn-lg btn-primary" %>
+<% end %>

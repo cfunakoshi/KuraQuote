@@ -13,14 +13,15 @@ class UsersController < ApplicationController
     @basicinfo = Basicinfo.find_by_user_id (params[:id])
     @vehicle = Vehicle.find_by_user_id (params[:id])
     @vehiclecount = 1
+    @coverage = Coverage.find_by_user_id (current_user.id)
   end
   
    def create
     @user = User.new(user_params)
     if @user.save
       #UserMailer.registration_confirmation(@user).deliver
-      
-      flash[:success] = "Please confirm your email address to continue"
+      log_in @user
+      flash[:success] = "Welcome to KuraQuote!"
       redirect_to home_path
     else
       flash[:error] = "Oops, something went wrong!"

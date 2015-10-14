@@ -1,0 +1,28 @@
+<h1>Edit Your Preferred Policy</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= simple_form_for(@coverage, html: { class: 'form-horizontal' }) do |f| %>
+
+    <%= f.hidden_field :user_id, :value => @user.id %>
+    
+    <%= f.input :bodilyinjury, collection: @bi, value_method: :limit %>
+    
+    <%= f.input :propertydamage, collection: @pd,  value_method: :limit %>
+    
+    <%= f.input :uninsuredunstacked, collection: @unmotor,  value_method: :unstacked %>
+    
+    <%= f.input :underinsuredunstacked, collection: @undermotor,  value_method: :unstacked %>
+    
+    <%= f.input :piprotection, collection: @pip,  value_method: :limit %>
+    
+    <%= f.input :pideductible, collection: @pip,  value_method: :deductible %>
+    
+    <%= f.input :collision, collection: @collision,  value_method: :deductible %>
+    
+    <%= f.input :comprehensive, collection: @comp,  value_method: :deductible %>
+    
+    <%= f.submit "Save Policy", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unstacked: MyText
+  stacked: MyText
+  user_id: 1
+
+two:
+  unstacked: MyText
+  stacked: MyText
+  user_id: 1

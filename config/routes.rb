@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   get 'basicinfos/new'
   get 'basicinfos/edit'
   get 'vehicles/destroy'
+  get 'coverages/new'
+  get 'coverages/edit'
+  get 'coverages/create'
+  get 'coveragenew' => 'coverages#new'
+  get 'coverageedit' => 'coverages#edit'
   get 'vehiclenew' => 'vehicles#new'
   get 'vehicleedit' => 'vehicles#edit'
   get 'basicinfosnew' => 'basicinfos#new'
@@ -40,6 +45,14 @@ Rails.application.routes.draw do
   resources :vehicleuses
   resources :vehiclevins
   resources :vehicles
+  resources :bodilyinjurys
+  resources :collisions
+  resources :comprehensives
+  resources :piprotections
+  resources :propertydamages
+  resources :undermotorists
+  resources :unmotorists
+  resources :coverages
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

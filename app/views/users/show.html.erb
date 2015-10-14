@@ -12,8 +12,7 @@
       <ul class="nav nav-pill nav-stacked">
         <li class="active"><%= link_to "Basic Information", '#info', :role => "pill", :data => {:toggle => "pill"} %></li>
         <li><%= link_to "Vehicles", '#vehicles', :role => "pill", :data => {:toggle => "pill"} %></li>
-        <li><%= link_to "Claims", '#claims', :role => "pill", :data => {:toggle => "pill"} %></li>
-        <li><%= link_to "Policy", '#policy', :role => "pill", :data => {:toggle => "pill"} %></li>
+        <li><%= link_to "Preferred Policy", '#policy', :role => "pill", :data => {:toggle => "pill"} %></li>
       </ul>
     </div>
 </div>
@@ -26,10 +25,8 @@
     <div id="vehicles" class="tab-pane fade"> 
         <%= render 'shared/vehicle' %>
     </div>
-    <div id="claims" class="tab-pane fade"> 
-      <p>Test</p>
-    </div>
-      <div id="policy" class="tab-pane fade"> 
+    <div id="policy" class="tab-pane fade"> 
+      <%= render 'shared/liability' %>
     </div>
 </div>
 </div>
