@@ -1,13 +1,17 @@
  <div id="profilehead">
         <div id="profile">
             <h1>
-              <%= @user.name %>
+              <%= @basicinfo.first_name %>
             </h1>
+          <b><%= link_to @user.email %></b>
+          <br>
+          <br>
+          <br>
          </div>
        <div class="profilenav">
       <ul class="nav nav-pill nav-stacked">
         <li class="active"><%= link_to "Basic Information", '#info', :role => "pill", :data => {:toggle => "pill"} %></li>
-        <li><%= link_to "My Quotes", '#quotes', :role => "pill", :data => {:toggle => "pill"} %></li>
+        <li><%= link_to "Vehicles", '#vehicles', :role => "pill", :data => {:toggle => "pill"} %></li>
         <li><%= link_to "Claims", '#claims', :role => "pill", :data => {:toggle => "pill"} %></li>
         <li><%= link_to "Policy", '#policy', :role => "pill", :data => {:toggle => "pill"} %></li>
       </ul>
@@ -17,13 +21,27 @@
 <div id="profilebody">
 <div class="tab-content">
     <div id="info" class="tab-pane fade in active">
+              <% if @basicinfo == nil %>
+      <%= link_to "Add to Basic info", basicinfosnew_path, class: "btn btn-lg btn-primary" %>
+        <% else %>
       <table class="table table-bordered">
-        <tr><td><b>Name:</b></td><td><%= @user.name %></td></tr>
-        <tr><td><b>Email:</b></td><td><%= @user.email %></tr>
+        <% @user.basicinfos.each do |b| %>
+        <tr><td><b>First Name:</b></td><td><%= b.first_name %></td></tr>
+        <tr><td><b>Last Name:</b></td><td><%= b.last_name %></tr>
+        <tr><td><b>Suffix:</b></td><td><%= b.suffix %></tr>
+        <tr><td><b>Home Phone Number:</b></td><td><%= b.home_phone %></tr>
+        <tr><td><b>Work Phone Number:</b></td><td><%= b.work_phone %></tr>
+        <tr><td><b>Mailing Address:</b></td><td><%= b.mailing_address %></tr>
+        <tr><td><b>City:</b></td><td><%= b.city %></tr>
+        <tr><td><b>State:</b></td><td><%= b.state %></tr>
+        <tr><td><b>Zipcode:</b></td><td><%= b.zipcode %></tr>
+         <% end %>
       </table>
+      <%= link_to "Edit Basic info", basicinfosedit_path, class: "btn btn-lg btn-primary" %>
+      <% end %>
     </div>
-    <div id="quotes" class="tab-pane fade"> 
-      <p>Test</p>
+    <div id="vehicles" class="tab-pane fade"> 
+
     </div>
     <div id="claims" class="tab-pane fade"> 
       <p>Test</p>

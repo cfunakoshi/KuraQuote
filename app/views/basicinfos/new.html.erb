@@ -1,0 +1,38 @@
+<h1>Basic Information</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@basicinfo) do |f| %>
+<%= render 'shared/basicinfoserror_messages' %>
+    <%= f.hidden_field :user_id, :value => @user.id %>
+      <%= f.label :First_Name %>
+      <%= f.text_field :first_name, class: 'form-control' %>
+
+         <%= f.label :Last_Name %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+    
+             <%= f.label :Suffix %>
+      <%= f.text_field :suffix, class: 'form-control' %> 
+    
+    <%= f.label :Home_Number %>
+    <%= f.text_field :home_phone, class: 'form-control' %> 
+    
+    <%= f.label :Work_Number %>
+    <%= f.text_field :work_phone, class: 'form-control' %> 
+    
+    <%= f.label :Mailing_Address %>
+    <%= f.text_field :mailing_address, class: 'form-control' %> 
+    
+             <%= f.label :City %>
+      <%= f.text_field :city, class: 'form-control' %> 
+    
+    <%= f.label :State %>
+    <%= f.text_field :state, class: 'form-control' %> 
+    
+    <%= f.label :Zipcode %>
+    <%= f.text_field :zipcode, class: 'form-control' %> 
+
+    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

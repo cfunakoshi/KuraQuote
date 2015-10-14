@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
+  has_many :basicinfos
     attr_accessor :age
     attr_accessor :remember_token, :activation_token
     before_save { self.email = email.downcase }
-    before_create :confirmation_token
+    #before_create :confirmation_token
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -43,17 +44,17 @@ end
       Time.now - self.birthday
   end
   
-  def email_activate
-    self.email_confirmed = true
-    self.confirm_token = nil
-    save!(:validate => false)
-  end
+ # def email_activate
+  #  self.email_confirmed = true
+  #  self.confirm_token = nil
+  #  save!(:validate => false)
+ # end
   
- private
-  def confirmation_token
-      if self.confirm_token.blank?
-          self.confirm_token = SecureRandom.urlsafe_base64.to_s
-      end
-    end
+ #private
+  #def confirmation_token
+  #    if self.confirm_token.blank?
+  #        self.confirm_token = SecureRandom.urlsafe_base64.to_s
+   #   end
+   # end
   
 end

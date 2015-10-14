@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
  
+  
   get 'insurer/index'
-
   get 'agents/new'
-
   get 'agents/index'
-
   root 'staticpages#start'
   get 'sessions/new'
   get 'users/new'
   get 'users/show'
+  get 'basicinfosnew' => 'basicinfos#new'
+  get 'basicinfosedit' => 'basicinfos#edit'
   get 'quote' => 'quote#show'
   get 'signup' => 'users#new'
   get 'home' => 'staticpages#home'
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       get :confirm_email
     end
   end
+  
+  resources :basicinfos
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

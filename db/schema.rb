@@ -11,13 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008184529) do
+ActiveRecord::Schema.define(version: 20151014005750) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "basic_infos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "suffix"
+    t.text     "home_phone"
+    t.text     "work_phone"
+    t.text     "mailing_address"
+    t.text     "city"
+    t.text     "state"
+    t.integer  "zipcode"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "basicinfos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "suffix"
+    t.text     "home_phone"
+    t.text     "work_phone"
+    t.text     "mailing_address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "connections", force: :cascade do |t|
@@ -45,5 +75,16 @@ ActiveRecord::Schema.define(version: 20151008184529) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "vehicles", force: :cascade do |t|
+    t.text     "vin"
+    t.integer  "year"
+    t.string   "manufacturer"
+    t.text     "model"
+    t.text     "style"
+    t.string   "primary_use"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
 end
