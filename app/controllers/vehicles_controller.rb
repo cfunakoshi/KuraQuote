@@ -22,9 +22,14 @@ class VehiclesController < ApplicationController
   end
   
   def edit
+    @user = current_user
+       @vehiclecount = 1
   end
   
   def destroy
+    Vehicle.find(params[:id]).destroy
+    flash[:success] = "Vehicle Deleted"
+    redirect_to current_user
   end
 
      private

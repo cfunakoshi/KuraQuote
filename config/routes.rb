@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get 'basicinfos/new'
   get 'basicinfos/edit'
   get 'vehicles/destroy'
-  get 'vehicledestroy' => 'vehicles#destroy'
   get 'vehiclenew' => 'vehicles#new'
   get 'vehicleedit' => 'vehicles#edit'
   get 'basicinfosnew' => 'basicinfos#new'

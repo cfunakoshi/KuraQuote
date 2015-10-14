@@ -17,14 +17,14 @@ class BasicinfosController < ApplicationController
   end
   
       def edit
-        @basicinfo = Basicinfo.find_by_user_id params[:id]
+        @basicinfo = Basicinfo.find_by_user_id(current_user.id)
   end
   
     def update
       @basicinfo = Basicinfo.find_by_user_id current_user.id
       if @basicinfo.update_attributes(basicinfo_params)
       flash[:success] = "Your profile has been updated!"
-      redirect_to home_path
+        redirect_to current_user
     else
       render 'edit'
     end
@@ -33,7 +33,7 @@ class BasicinfosController < ApplicationController
      private
 
     def basicinfo_params
-      params.require(:basicinfo).permit(:user_id, :first_name, :last_name, :suffix, :home_phone, :work_phone, :mailing_address, :state, :zipcode)
+      params.require(:basicinfo).permit(:user_id, :first_name, :last_name, :suffix, :home_phone, :work_phone, :mailing_address, :city, :state, :zipcode)
     end
   
 end
