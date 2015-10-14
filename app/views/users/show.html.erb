@@ -1,7 +1,7 @@
  <div id="profilehead">
         <div id="profile">
             <h1>
-              <%= @basicinfo.first_name %>
+              <%= @user.name %>
             </h1>
           <b><%= link_to @user.email %></b>
           <br>
@@ -21,27 +21,10 @@
 <div id="profilebody">
 <div class="tab-content">
     <div id="info" class="tab-pane fade in active">
-              <% if @basicinfo == nil %>
-      <%= link_to "Add to Basic info", basicinfosnew_path, class: "btn btn-lg btn-primary" %>
-        <% else %>
-      <table class="table table-bordered">
-        <% @user.basicinfos.each do |b| %>
-        <tr><td><b>First Name:</b></td><td><%= b.first_name %></td></tr>
-        <tr><td><b>Last Name:</b></td><td><%= b.last_name %></tr>
-        <tr><td><b>Suffix:</b></td><td><%= b.suffix %></tr>
-        <tr><td><b>Home Phone Number:</b></td><td><%= b.home_phone %></tr>
-        <tr><td><b>Work Phone Number:</b></td><td><%= b.work_phone %></tr>
-        <tr><td><b>Mailing Address:</b></td><td><%= b.mailing_address %></tr>
-        <tr><td><b>City:</b></td><td><%= b.city %></tr>
-        <tr><td><b>State:</b></td><td><%= b.state %></tr>
-        <tr><td><b>Zipcode:</b></td><td><%= b.zipcode %></tr>
-         <% end %>
-      </table>
-      <%= link_to "Edit Basic info", basicinfosedit_path, class: "btn btn-lg btn-primary" %>
-      <% end %>
+      <%= render 'shared/general' %>
     </div>
     <div id="vehicles" class="tab-pane fade"> 
-
+        <%= render 'shared/vehicle' %>
     </div>
     <div id="claims" class="tab-pane fade"> 
       <p>Test</p>

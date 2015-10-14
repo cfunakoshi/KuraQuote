@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  vin: MyText
-  year: 1
   manufacturer: MyString
-  model: MyText
-  style: MyText
-  primary_use: MyString
+  vin: MyText
+  model: MyString
+  specs: MyText
+  use: MyString
+  user_id: 1
 
 two:
-  vin: MyText
-  year: 1
   manufacturer: MyString
-  model: MyText
-  style: MyText
-  primary_use: MyString
+  vin: MyText
+  model: MyString
+  specs: MyText
+  use: MyString
+  user_id: 1

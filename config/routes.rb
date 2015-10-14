@@ -8,6 +8,15 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'users/new'
   get 'users/show'
+  get 'vehicles/new'
+  get 'vehicles/create'
+  get 'vehicles/edit'
+  get 'basicinfos/new'
+  get 'basicinfos/edit'
+  get 'vehicles/destroy'
+  get 'vehicledestroy' => 'vehicles#destroy'
+  get 'vehiclenew' => 'vehicles#new'
+  get 'vehicleedit' => 'vehicles#edit'
   get 'basicinfosnew' => 'basicinfos#new'
   get 'basicinfosedit' => 'basicinfos#edit'
   get 'quote' => 'quote#show'
@@ -26,6 +35,12 @@ Rails.application.routes.draw do
   end
   
   resources :basicinfos
+  resources :vehiclemanufacturers
+  resources :vehiclemodels
+  resources :vehiclespecs
+  resources :vehicleuses
+  resources :vehiclevins
+  resources :vehicles
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

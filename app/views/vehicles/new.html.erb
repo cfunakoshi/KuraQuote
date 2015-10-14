@@ -1,0 +1,24 @@
+
+
+<h1>Basic Information</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= simple_form_for(@vehicle, html: { class: 'form-horizontal' }) do |f| %>
+
+    <%= f.hidden_field :user_id, :value => @user.id %>
+    
+    <%= f.input :manufacturer, collection: @manufacturer, value_method: :name %>
+    
+    <%= f.input :model, collection: @model,  value_method: :name %>
+    
+    <%= f.input :specs, collection: @specs,  value_method: :specifications %>
+    
+    <%= f.input :use, collection: @usage,  value_method: :usage %>
+    
+    <%= f.input :vin, collection: @vin,  value_method: :vin %>
+    
+    <%= f.submit "Save Vehicle", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

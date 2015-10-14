@@ -11,29 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014005750) do
-
-  create_table "agents", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "basic_infos", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.text     "suffix"
-    t.text     "home_phone"
-    t.text     "work_phone"
-    t.text     "mailing_address"
-    t.text     "city"
-    t.text     "state"
-    t.integer  "zipcode"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
+ActiveRecord::Schema.define(version: 20151014021523) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -50,41 +28,67 @@ ActiveRecord::Schema.define(version: 20151014005750) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "connections", force: :cascade do |t|
-    t.integer  "agent_id"
-    t.integer  "customer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",             default: false
-    t.string   "activation_digest"
-    t.boolean  "activated",         default: false
-    t.datetime "activated_at"
+    t.boolean  "admin",           default: false
     t.string   "lastname"
     t.date     "birthday"
-    t.boolean  "email_confirmed",   default: false
+    t.boolean  "email_confirmed", default: false
     t.string   "confirm_token"
+    t.integer  "vehicle_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
+  create_table "vehiclemanufacturers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "vehiclemodels", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
   create_table "vehicles", force: :cascade do |t|
-    t.text     "vin"
-    t.integer  "year"
     t.string   "manufacturer"
-    t.text     "model"
-    t.text     "style"
-    t.string   "primary_use"
+    t.text     "vin"
+    t.string   "model"
+    t.text     "specs"
+    t.string   "use"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "vehiclespecs", force: :cascade do |t|
+    t.text     "specifications"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+  end
+
+  create_table "vehicleuses", force: :cascade do |t|
+    t.string   "usage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "vehiclevins", force: :cascade do |t|
+    t.text     "vin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
 end

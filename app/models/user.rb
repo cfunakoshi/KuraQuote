@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :basicinfos
+  has_many :vehicles
     attr_accessor :age
     attr_accessor :remember_token, :activation_token
     before_save { self.email = email.downcase }
