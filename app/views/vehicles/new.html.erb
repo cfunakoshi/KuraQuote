@@ -1,5 +1,4 @@
 
-
 <h1>Vehicle Information</h1>
 
 <div class="row">
@@ -8,16 +7,15 @@
 
     <%= f.hidden_field :user_id, :value => @user.id %>
     
-    <%= f.input :manufacturer, collection: @manufacturer, value_method: :name %>
+    <%= f.input :manufacturer, collection: @manufacturer, value_method: :name, :label => "Manufacturer" %>
     
-    <%= f.input :model, collection: @model,  value_method: :name %>
+    <%= f.input :model, collection: @manufacturer, as: :grouped_select, group_method: :vehiclemodels,  value_method: :name, :label => "Model" %>
     
-    <%= f.input :specs, collection: @specs,  value_method: :specifications %>
+    <%= f.input :specs, collection: @specs,  value_method: :specifications, label_method: :specifications, :label => "Specifications" %>
     
-    <%= f.input :use, collection: @usage,  value_method: :usage %>
+    <%= f.input :use, collection: @usage,  value_method: :usage, label_method: :usage, :label => "Usage" %>
     
-    <%= f.input :vin, collection: @vin,  value_method: :vin %>
-    
+    <br>
     <%= f.submit "Save Vehicle", class: "btn btn-primary" %>
     <% end %>
   </div>

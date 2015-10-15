@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
      # if user.email_confirmed
         log_in user
+      @user = current_user.name
+      flash[:success] = "Welcome Back #@user !"
         redirect_back_or home_path
      # else
       #  flash.now[:error] = 'Please activate your account by following the 

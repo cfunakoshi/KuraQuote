@@ -6,21 +6,19 @@
 
     <%= f.hidden_field :user_id, :value => @user.id %>
     
-    <%= f.input :bodilyinjury, collection: @bi, value_method: :limit %>
+    <%= f.input :bodilyinjury, collection: @bi, value_method: :limit, label_method: :limit, :label => "Bodily Injury" %>
     
-    <%= f.input :propertydamage, collection: @pd,  value_method: :limit %>
+    <%= f.input :propertydamage, collection: @pd,  value_method: :limit, label_method: :limit, :label => "Property Damage" %>
     
-    <%= f.input :uninsuredunstacked, collection: @unmotor,  value_method: :unstacked %>
+    <%= f.input :uninsuredunstacked, collection: @unmotor,  value_method: :unstacked, label_method: :unstacked, :label => "Uninsured Motorist" %>
     
-    <%= f.input :underinsuredunstacked, collection: @undermotor,  value_method: :unstacked %>
+    <%= f.input :underinsuredunstacked, collection: @undermotor,  value_method: :unstacked, label_method: :unstacked, :label => "Under Insured Motorist" %>
     
-    <%= f.input :piprotection, collection: @pip,  value_method: :limit %>
+    <%= f.input :piprotection, collection: @pip,  value_method: :limit, label_method: :limit, :label => "Personal Injury Protection" %>
     
-    <%= f.input :pideductible, collection: @pip,  value_method: :deductible %>
+    <%= f.input :collision, collection: @collision,  value_method: :deductible, label_method: :deductible, :label => "Collision" %>
     
-    <%= f.input :collision, collection: @collision,  value_method: :deductible %>
-    
-    <%= f.input :comprehensive, collection: @comp,  value_method: :deductible %>
+    <%= f.input :comprehensive, collection: @comp,  value_method: :deductible, label_method: :deductible, :label => "Comprehensive" %>
     
     <%= f.submit "Save Policy", class: "btn btn-primary" %>
     <% end %>

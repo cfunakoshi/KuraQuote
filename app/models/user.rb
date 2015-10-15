@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :basicinfos
   has_many :vehicles
   belongs_to :coverage
-    attr_accessor :age
+  
     attr_accessor :remember_token, :activation_token
     before_save { self.email = email.downcase }
     #before_create :confirmation_token
@@ -42,9 +42,6 @@ end
     update_attribute(:remember_digest, nil)
   end
   
-    def age
-      Time.now - self.birthday
-  end
   
  # def email_activate
   #  self.email_confirmed = true

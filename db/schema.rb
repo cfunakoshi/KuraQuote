@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014082245) do
+ActiveRecord::Schema.define(version: 20151014225007) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -118,13 +118,15 @@ ActiveRecord::Schema.define(version: 20151014082245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.integer  "model_id"
   end
 
   create_table "vehiclemodels", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "user_id"
+    t.integer  "vehiclemanufacturer_id"
   end
 
   create_table "vehicles", force: :cascade do |t|
