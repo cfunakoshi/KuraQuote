@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015070051) do
+ActiveRecord::Schema.define(version: 20151023033611) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20151015070051) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "active"
   end
 
   create_table "comprehensives", force: :cascade do |t|
@@ -71,6 +72,56 @@ ActiveRecord::Schema.define(version: 20151015070051) do
     t.integer  "user_id"
   end
 
+  create_table "horribleinsurancebis", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "bodilyinjury_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "companylist_id"
+  end
+
+  create_table "horribleinsurancecollisions", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "collision_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "companylist_id"
+  end
+
+  create_table "horribleinsurancepds", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "propertydamage_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "companylist_id"
+  end
+
+  create_table "horribleinsurancepips", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "piprotection_id"
+    t.integer  "companylist_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "horribleinsuranceundermotors", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "deductible"
+    t.integer  "undermotorist_id"
+    t.integer  "companylist_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "horribleinsuranceunmotors", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "deductible"
+    t.integer  "unmotorist_id"
+    t.integer  "companylist_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "piprotections", force: :cascade do |t|
     t.text     "limit"
     t.integer  "deductible"
@@ -84,6 +135,48 @@ ActiveRecord::Schema.define(version: 20151015070051) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tradewindbis", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "bodilyinjury_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "companylist_id"
+  end
+
+  create_table "tradewindpds", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "propertydamage_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "companylist_id"
+  end
+
+  create_table "tradewindpips", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "piprotection_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "companylist_id"
+  end
+
+  create_table "tradewindundermotors", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "deductible"
+    t.integer  "undermotorist_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "companylist_id"
+  end
+
+  create_table "tradewindunmotors", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "deductible"
+    t.integer  "unmotorist_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "companylist_id"
   end
 
   create_table "undermotorists", force: :cascade do |t|

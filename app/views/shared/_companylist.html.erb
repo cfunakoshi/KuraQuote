@@ -1,0 +1,12 @@
+<div id="companylist">
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <% @companylist.each do |c| %>
+    <li><%= link_to c.name %></li>
+    <li class="divider"></li>
+    <% end %>
+  </ul>
+</div>
+</div>

@@ -34,16 +34,15 @@ class CoveragesController < ApplicationController
     @pd = Propertydamage.all
     @undermotor = Undermotorist.all
     @unmotor = Unmotorist.all
-
   end
   
   def update
     @coverage = Coverage.new(coverage_params)
     if @coverage.save
-      flash[:success] = "Your Policy has been updated!"
-        redirect_to current_user
-    else
-      render 'edit'
+     flash[:success] = "Your Policy has been updated!"
+       redirect_to current_user
+   else
+     render 'edit'
     end
   end
   

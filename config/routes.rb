@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
-  
+  get 'comparators/new'
+  get 'comparators/show'
   get 'insurer/index'
   get 'agents/new'
   get 'agents/index'
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get 'comparator' => 'comparators#show'
+  get 'newquote' => 'comparators#new'
 
   resources :users do
     member do
@@ -53,6 +56,10 @@ Rails.application.routes.draw do
   resources :undermotorists
   resources :unmotorists
   resources :coverages
+  resources :companylist
+  resources :horribleinsurancebi
+  resources :horribleinsurancecollision
+  resources :horribleinsurancepd
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

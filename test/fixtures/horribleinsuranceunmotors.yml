@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 1
+  deductible: 1
+  unmotorist_id: 1
+  companylist_id: 1
+
+two:
+  price: 1
+  deductible: 1
+  unmotorist_id: 1
+  companylist_id: 1

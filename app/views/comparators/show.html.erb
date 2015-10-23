@@ -1,0 +1,25 @@
+
+<h1>Compare Rates Now!</h1>
+<div class="fit">
+<ul class="nav nav-tabs">
+  <li class="active"><%= link_to "Sponsored Companies", '#general', :role => "tab", :data => {:toggle => "tab"} %></li>
+  <li><%= link_to "Basic Comparator", '#liability', :role => "tab", :data => {:toggle => "tab"} %></li>
+  <li><%= link_to "Existing Quotes", '#myquotes', :role => "tab", :data => {:toggle => "tab"} %></li>
+</ul>
+
+<div class="tab-content">
+  <div id="general" class="tab-pane fade in active">
+    <%= render 'shared/companylist' %>
+  </div>
+  <div id="liability" class="tab-pane fade">
+    <% if @presence == 1 %>
+    <%= render 'shared/compare' %>
+    <% else %>
+    <br>
+    <% end %>
+  </div>
+  <div id="myquotes" class="tab-pane fade">
+
+  </div>
+</div>
+</div>

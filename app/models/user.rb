@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :basicinfos
   has_many :vehicles
-  belongs_to :coverage
+  has_one :coverage
   
     attr_accessor :remember_token, :activation_token
     before_save { self.email = email.downcase }
