@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  companylist_id: 1
+  bodilyinjury: MyText
+  propertydamage: MyText
+  uninsuredunstacked: MyText
+  uninsuredstacked: MyText
+  underinsuredunstacked: MyText
+  underinsuredstacked: MyText
+  piprotection: MyText
+  pideductible: 1
+  collision: 1
+  comprehensive: 1
+  user_id: 1
+
+two:
+  companylist_id: 1
+  bodilyinjury: MyText
+  propertydamage: MyText
+  uninsuredunstacked: MyText
+  uninsuredstacked: MyText
+  underinsuredunstacked: MyText
+  underinsuredstacked: MyText
+  piprotection: MyText
+  pideductible: 1
+  collision: 1
+  comprehensive: 1
+  user_id: 1

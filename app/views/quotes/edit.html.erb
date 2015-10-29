@@ -1,0 +1,19 @@
+<br>
+<br>
+<br>
+<div class="t">
+<% @user.quotes.each do |b| %>
+  <b>Quote <%=@quotecount%></b>
+           <table class="table table-bordered">
+             <tr><td><b>Bodily Injury:</b></td><td><%= b.bodilyinjury %></td></tr>
+             <tr><td><b>Property Damage:</b></td><td><%= b.propertydamage %></tr>
+             <tr><td><b>Uninsured Motorist:</b></td><td><%= b.uninsuredunstacked %></tr>
+             <tr><td><b>Under Insured Motorist:</b></td><td><%= b.underinsuredunstacked %></tr>
+             <tr><td><b>Personal Injury Protection:</b></td><td><%= b.piprotection %></tr>
+            </table>
+        <div class="button">
+          <%= link_to "Delete Quote", b, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-lg btn-primary" %></div>
+<br><br>
+  <% @quotecount +=1 %>
+        <% end %>
+</div>

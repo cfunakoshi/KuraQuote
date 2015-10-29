@@ -1,0 +1,28 @@
+<% if @quote == nil %>
+<br>
+<br>
+<p>You have no existing Quotes.</p>
+ <% else %>
+        <br>
+        <br>
+<table class="table"><tr>
+  <% @user.quotes.each do |b| %>
+  <td>
+    <br>
+<b>Quote <%= @quotecount %></b>
+           <table class="table table-bordered">
+             <tr><td><b>Bodily Injury:</b></td><td><%= b.bodilyinjury %></td></tr>
+             <tr><td><b>Property Damage:</b></td><td><%= b.propertydamage %></tr>
+            <tr><td><b>Uninsured Motorist:</b></td><td><%= b.uninsuredunstacked %></tr>
+             <tr><td><b>Underinsured Motorists:</b></td><td><%= b.underinsuredunstacked %></tr>
+             <tr><td><b>Personal Injury Protection:</b></td><td><%= b.piprotection %></tr>
+             <tr><td><b>Collision:</b></td><td><%= b.collision %></tr>
+             <tr><td><b>Comprehensive:</b></td><td><%= b.comprehensive %></tr>
+            </table>
+<% @quotecount += 1 %>
+  </td>
+       <% end %>
+  </tr>
+</table>
+<%= link_to "Manage Quotes", editquote_path, class: "btn btn-lg btn-primary" %>
+<% end %>

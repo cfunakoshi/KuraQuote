@@ -5,10 +5,15 @@ class ComparatorsController < ApplicationController
 
   def show
     @user = current_user
+    @quote = Quote.find_by_user_id(current_user.id)
     @companylist = Companylist.all
     @presence = 0
-    @bicount = @pdcount = @pipcount = @unmotorcount = @undermotorcount = 1
+    @quotecount = @bicount = @pdcount = @pipcount = @unmotorcount = @undermotorcount = 1
     @total = Array.new(10, 0)
+    if @user.coverage == nil
+      flash[:danger] = "You Must Complete Basic Information/Vehicles/Preferred Policy First"
+      redirect_to current_user
+    else
       if @user.coverage.bodilyinjury.presence && @user.coverage.propertydamage.presence && @user.coverage.piprotection.presence
       @presence = 1
       @bi = Bodilyinjury.find_by_limit(@user.coverage.bodilyinjury)
@@ -24,6 +29,8 @@ class ComparatorsController < ApplicationController
     else
       flash[:danger] = "You Must Finish Policy in Profile Page"
     end
+    end
 end
+ 
   
 end

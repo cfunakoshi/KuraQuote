@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023033611) do
+ActiveRecord::Schema.define(version: 20151023202534) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -135,6 +135,24 @@ ActiveRecord::Schema.define(version: 20151023033611) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.integer  "companylist_id"
+    t.text     "bodilyinjury"
+    t.text     "propertydamage"
+    t.text     "uninsuredunstacked"
+    t.text     "uninsuredstacked"
+    t.text     "underinsuredunstacked"
+    t.text     "underinsuredstacked"
+    t.text     "piprotection"
+    t.integer  "pideductible"
+    t.integer  "collision"
+    t.integer  "comprehensive"
+    t.integer  "user_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.text     "discounts"
   end
 
   create_table "tradewindbis", force: :cascade do |t|

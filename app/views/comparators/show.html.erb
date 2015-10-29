@@ -2,7 +2,7 @@
 <h1>Compare Rates Now!</h1>
 <div class="fit">
 <ul class="nav nav-tabs">
-  <li class="active"><%= link_to "Sponsored Companies", '#general', :role => "tab", :data => {:toggle => "tab"} %></li>
+  <li class="active"><%= link_to "Select A Company", '#general', :role => "tab", :data => {:toggle => "tab"} %></li>
   <li><%= link_to "Basic Comparator", '#liability', :role => "tab", :data => {:toggle => "tab"} %></li>
   <li><%= link_to "Existing Quotes", '#myquotes', :role => "tab", :data => {:toggle => "tab"} %></li>
 </ul>
@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <div id="myquotes" class="tab-pane fade">
-
+    <%= render 'shared/existingquote' %>
   </div>
 </div>
 </div>
