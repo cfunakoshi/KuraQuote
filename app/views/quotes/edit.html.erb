@@ -1,19 +1,30 @@
+<% if Vehicle.find_by_user_id(@user.id) == nil %>
+<% flash[:danger] = "Must add a Vehicle" %>
+<% end %>
 <br>
 <br>
-<br>
-<div class="t">
-<% @user.quotes.each do |b| %>
-  <b>Quote <%=@quotecount%></b>
+
+<table class="table"><tr>
+  <% @user.quotes.each do |b| %>
+  <td>
+    <br>
+<b>Quote <%= @quotecount %></b>
+    <br>
+    <br>
            <table class="table table-bordered">
+            <tr><td><b>Company:</b></td><td><%= @companylist.find(b.companylist_id).name %></td></tr>
              <tr><td><b>Bodily Injury:</b></td><td><%= b.bodilyinjury %></td></tr>
              <tr><td><b>Property Damage:</b></td><td><%= b.propertydamage %></tr>
-             <tr><td><b>Uninsured Motorist:</b></td><td><%= b.uninsuredunstacked %></tr>
-             <tr><td><b>Under Insured Motorist:</b></td><td><%= b.underinsuredunstacked %></tr>
+            <tr><td><b>Uninsured Motorist:</b></td><td><%= b.uninsuredunstacked %></tr>
+             <tr><td><b>Underinsured Motorists:</b></td><td><%= b.underinsuredunstacked %></tr>
              <tr><td><b>Personal Injury Protection:</b></td><td><%= b.piprotection %></tr>
+             <tr><td><b>Collision:</b></td><td><%= b.collision %></tr>
+             <tr><td><b>Comprehensive:</b></td><td><%= b.comprehensive %></tr>
             </table>
-        <div class="button">
-          <%= link_to "Delete Quote", b, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-lg btn-primary" %></div>
-<br><br>
-  <% @quotecount +=1 %>
-        <% end %>
-</div>
+    <%= link_to 'Print Quote', print_path(@post, :id => b.id, format: 'pdf'), :method => :post,  class: "btn btn-lg btn-primary" %>
+    <%= link_to "Delete Quote", b, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-lg btn-primary" %>
+<% @quotecount += 1 %>
+  </td>
+       <% end %>
+  </tr>
+</table>

@@ -5,6 +5,7 @@ class VehiclesController < ApplicationController
     @specs = Vehiclespec.select("specifications")
     @usage = Vehicleuse.select("usage")
     @vin = Vehiclevin.select("vin")
+    @year = Year.all
     @vehicle = Vehicle.new
     @user = current_user
   end
@@ -35,6 +36,6 @@ class VehiclesController < ApplicationController
      private
 
   def vehicle_params
-      params.require(:vehicle).permit(:user_id, :manufacturer, :model, :specs, :use, :vin)
+    params.require(:vehicle).permit(:user_id, :manufacturer, :model, :specs, :use, :vin, :year)
     end
 end

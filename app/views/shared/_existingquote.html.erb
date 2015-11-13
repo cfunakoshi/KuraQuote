@@ -10,7 +10,10 @@
   <td>
     <br>
 <b>Quote <%= @quotecount %></b>
-           <table class="table table-bordered">
+    <br>
+    <br>
+          <table class="table table-bordered">
+             <tr><td><b>Company:</b></td><td><%= @companylist.find(b.companylist_id).name %></td></tr>
              <tr><td><b>Bodily Injury:</b></td><td><%= b.bodilyinjury %></td></tr>
              <tr><td><b>Property Damage:</b></td><td><%= b.propertydamage %></tr>
             <tr><td><b>Uninsured Motorist:</b></td><td><%= b.uninsuredunstacked %></tr>

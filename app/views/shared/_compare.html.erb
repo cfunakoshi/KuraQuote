@@ -16,6 +16,7 @@
             <% if i == nil %>
             <% if @companylist.find(@bicount).active == true %>
             <td><p>N/A</p></td>
+            <% @total[@bicount] += 1 %>
             <% end %>
             <% elsif i.companylist_id == @bicount && @companylist.find(@bicount).active == true %>
             <td><p>+<%=i.price%></p></td>
@@ -88,8 +89,10 @@
        <tr>
          <td><b>Total Price:</b></td>
          <% @total.each do |i| %>
-         <% if i != 0 %>
-         <td><b><%= i %></b></td>
+         <% if i > 1 %>
+         <td><b>= <%=i%></b></td>
+         <% elsif i == 1  %>
+         <td><b>= 0</b></td>
          <% else %>
          <% end %>
          <% end %>

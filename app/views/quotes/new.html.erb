@@ -6,6 +6,8 @@
 
     <%= f.hidden_field :user_id, :value => @user.id %>
     
+    <%= f.input :companylist_id, collection: @companylist, value_method: :id, label_method: :name, :label => "Company" %>
+    
     <%= f.input :bodilyinjury, collection: @bi, value_method: :limit, label_method: :limit, :label => "Bodily Injury" %>
     
     <%= f.input :propertydamage, collection: @pd,  value_method: :limit, label_method: :limit, :label => "Property Damage" %>

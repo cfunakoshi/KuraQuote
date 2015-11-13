@@ -1,0 +1,94 @@
+<div style="width:100%">
+  <% @user.basicinfos.each do |b|%>
+  <small><%=b.first_name%>
+    <%=b.last_name%></small><br>
+  <small><%=b.mailing_address%></small><br>
+  <small><%=b.city%>,
+    <%=b.state%>
+    <%=b.zipcode%></small>
+  <% end %>
+  <div style="width:50%">
+    <hr>
+  </div>
+</div>
+
+<div style="width:100%">
+  <br>
+  <% if @quote.companylist_id == 1 %>
+  <p><h1 style="text-align:center; white-space: nowrap">HORRIBLE INSURANCE COMPANY</h1><em style = "float:right; font-size:70%">Horrible Insurance Inc.</em> </p>
+  <% elsif @quote.companylist_id == 2 %>
+  <p><h1 style=" white-space: nowrap; text-align:center">TRADEWIND INSURANCE COMPANY</h1><em style = "float:right; font-size:70%">Island Insurance Company Ltd.<br>Island Premier Insurance Company Ltd.<br>Tradewind Insurance Company Ltd.</em></p>
+
+    <% else %>
+  <% end %>
+  <br><br>
+</div>
+
+<div>
+  <% @user.vehicles.each do |v| %>
+  <p>Quote for a 6 month policy period:</p>
+  <br>
+  <p><b><%= v.year %> <%= v.manufacturer %> <%= v.model %><br><%= v.specs %> <%= v.specs %></b><br>Primary Use of the Vehicle: <%=v.use %></p>
+  <br><br>
+  <table style = "width:100%; text-align:center">
+      
+    <tr><th></th><th>Limits</th><th>Deductible</th><th>Premium</th></tr>
+      <tr><td style="text-align:left">Bodily Injury Liability</td><td><%= @quote.bodilyinjury %></td><td></td><td><% @biarray.each do |i| %>
+        <% if i.companylist_id == @quote.companylist_id %>
+            <p>+<%=i.price%></p>
+        <% @total += i.price %>
+        <% else %>
+             <% end %>
+           <% end %></td></tr>
+      
+    <tr><td style="text-align:left">Property Damage Liability</td><td><%= @quote.propertydamage %></td><td></td><td><% @pdarray.each do |i| %>
+        <% if i.companylist_id == @quote.companylist_id %>
+            <p>+<%=i.price%></p>
+        <% @total += i.price %>
+        <% else %>
+             <% end %>
+           <% end %></td></tr>
+   
+    <tr><td style="text-align:left">Uninsured Motorist</td><td><%= @quote.uninsuredunstacked %></td><td></td><td><% @unmotorarray.each do |i| %>
+        <% if i.companylist_id == @quote.companylist_id %>
+            <p>+<%=i.price%></p>
+        <% @total += i.price %>
+        <% else %>
+             <% end %>
+           <% end %></td></tr>
+    
+    <tr><td style="text-align:left">Underinsured Motorist</td><td><%= @quote.underinsuredunstacked %></td><td></td><td><% @undermotorarray.each do |i| %>
+        <% if i.companylist_id == @quote.companylist_id %>
+            <p>+<%=i.price%></p>
+        <% @total += i.price %>
+        <% else %>
+             <% end %>
+           <% end %></td></tr>
+    
+    <tr><td style="text-align:left">Personal Injury Protection</td><td><%= @quote.piprotection %></td><td></td><td><% @piparray.each do |i| %>
+        <% if i.companylist_id == @quote.companylist_id %>
+            <p>+<%=i.price%></p>
+        <% @total += i.price %>
+        <% else %>
+             <% end %>
+           <% end %></td></tr>
+    
+    <tr><td style="text-align:left">Collision</td><td></td><td><%= @quote.collision %></td></tr>
+    
+    <tr><td style="text-align:left">Comprehensive</td><td></td><td><%= @quote.comprehensive %></td></tr>
+    <tr><td><p></p></td><td><p> </p></td><td><p> </p></td><td><p> </p></td></tr>
+    <tr><td style="text-align:left"><b>Total Premium</b></td><td></td><td></td><td><b>=<%= @total %></b></td></tr>
+  </table>
+  <% end %>
+  <br>
+  <small>*Limits x $1,000<br>
+    **Per Person/Per Accident</small> 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <small>The prices shown here are based on the rates given to this website and may not be the final price of the companies listed. Prices are subject to change.</small>
+</div>

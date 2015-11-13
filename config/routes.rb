@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  get 'quotes/print'
   get 'quotes/new'
   get 'quotes/edit'
   get 'comparators/show'
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   get 'comparator' => 'comparators#show'
   get 'newquote' => 'quotes#new'
   get 'editquote' => 'quotes#edit'
+  post 'print' => 'quotes#print'
   
 
   resources :users do

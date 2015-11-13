@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023202534) do
+ActiveRecord::Schema.define(version: 20151105134339) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(version: 20151023202534) do
     t.boolean  "email_confirmed", default: false
     t.string   "confirm_token"
     t.integer  "vehicle_id"
+    t.integer  "agent_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -255,6 +256,7 @@ ActiveRecord::Schema.define(version: 20151023202534) do
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "year"
   end
 
   create_table "vehiclespecs", force: :cascade do |t|
@@ -276,6 +278,12 @@ ActiveRecord::Schema.define(version: 20151023202534) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+  end
+
+  create_table "years", force: :cascade do |t|
+    t.integer  "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

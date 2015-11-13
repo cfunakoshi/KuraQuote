@@ -7,6 +7,8 @@
 
     <%= f.hidden_field :user_id, :value => @user.id %>
     
+    <%= f.input :year, collection: @year, value_method: :year, label_method: :year, :label => "Year" %>
+    
     <%= f.input :manufacturer, collection: @manufacturer, value_method: :name, :label => "Manufacturer" %>
     
     <%= f.input :model, collection: @manufacturer, as: :grouped_select, group_method: :vehiclemodels,  value_method: :name, :label => "Model" %>

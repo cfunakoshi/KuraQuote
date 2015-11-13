@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :admin_user,     only: [ :destroy]
   
   def new
     @user = User.new
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   
    def create
     @user = User.new(user_params)
+     @agentuser = User.new(agentuser_params)
     if @user.save
       #UserMailer.registration_confirmation(@user).deliver
       log_in @user
@@ -27,6 +28,11 @@ class UsersController < ApplicationController
       flash[:error] = "Oops, something went wrong!"
       render 'new'
     end
+    # if @agentuser.save
+       #flash[:success] = "User Added!"
+   # else
+ #     flash[:error] = "Oops, something went wrong!"
+ #    end
   end
   
     def edit
@@ -45,12 +51,13 @@ class UsersController < ApplicationController
   
   def index
     @users = User.paginate(page: params[:page])
+   # @agentuser = User.new
   end
   
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User Deleted"
-    redirect_to home_path
+    redirect_to index_path
   end
   
   #def confirm_email
@@ -70,8 +77,12 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+        :password_confirmation, :agent_id)
     end
+  
+  #def agentuser_params
+ #   params.require(:user).permit(:name, :email,password: "orange33", password_confirmation: "orange33" :agent_id)
+ # end
   
     def logged_in_user
       unless logged_in?
