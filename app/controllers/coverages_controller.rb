@@ -5,6 +5,7 @@ class CoveragesController < ApplicationController
     @collision = Collision.all
     @comp = Comprehensive.all
     @pip = Piprotection.all
+    @pideductible = Pideductible.all
     @pd = Propertydamage.all
     @undermotor = Undermotorist.all
     @unmotor = Unmotorist.all
@@ -31,6 +32,7 @@ class CoveragesController < ApplicationController
     @collision = Collision.all
     @comp = Comprehensive.all
     @pip = Piprotection.all
+    @pideductible = Pideductible.all
     @pd = Propertydamage.all
     @undermotor = Undermotorist.all
     @unmotor = Unmotorist.all

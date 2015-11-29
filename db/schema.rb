@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105134339) do
+ActiveRecord::Schema.define(version: 20151129181927) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20151105134339) do
     t.text     "underinsuredunstacked"
     t.text     "underinsuredstacked"
     t.text     "piprotection"
-    t.integer  "pideductible"
+    t.text     "pideductible"
     t.integer  "collision"
     t.integer  "comprehensive"
     t.datetime "created_at",            null: false
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20151105134339) do
     t.integer  "companylist_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.text     "deductible"
   end
 
   create_table "horribleinsuranceundermotors", force: :cascade do |t|
@@ -120,6 +121,12 @@ ActiveRecord::Schema.define(version: 20151105134339) do
     t.integer  "companylist_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "pideductibles", force: :cascade do |t|
+    t.text     "deductible"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "piprotections", force: :cascade do |t|
@@ -155,6 +162,17 @@ ActiveRecord::Schema.define(version: 20151105134339) do
     t.text     "discounts"
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "agent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "relationships", ["agent_id"], name: "index_relationships_on_agent_id"
+  add_index "relationships", ["client_id", "agent_id"], name: "index_relationships_on_client_id_and_agent_id", unique: true
+  add_index "relationships", ["client_id"], name: "index_relationships_on_client_id"
+
   create_table "tradewindbis", force: :cascade do |t|
     t.integer  "price"
     t.integer  "bodilyinjury_id"
@@ -177,6 +195,7 @@ ActiveRecord::Schema.define(version: 20151105134339) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "companylist_id"
+    t.integer  "deductible"
   end
 
   create_table "tradewindundermotors", force: :cascade do |t|

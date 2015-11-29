@@ -18,12 +18,12 @@ class UsersController < ApplicationController
   
    def create
     @user = User.new(user_params)
-     @agentuser = User.new(agentuser_params)
+    ## @agentuser = User.new(agentuser_params)
     if @user.save
       #UserMailer.registration_confirmation(@user).deliver
       log_in @user
       flash[:success] = "Welcome to KuraQuote!"
-      redirect_to home_path
+      redirect_to @user
     else
       flash[:error] = "Oops, something went wrong!"
       render 'new'

@@ -16,7 +16,7 @@
     
     <%= f.input :piprotection, collection: @pip,  value_method: :limit, label_method: :limit , :label => "Personal Injury Protection"%>
     
-    <%= f.input :pideductible, collection: @pip,  value_method: :deductible, label_method: :deductible, :label => "PIP Deductible" %>
+   <%= f.input :pideductible, collection: @pideductible,  value_method: :deductible, label_method: :deductible, :label => "(Deductible)" %>
     
     <%= f.input :collision, collection: @collision,  value_method: :deductible, label_method: :deductible, :label => "Collision" %>
     

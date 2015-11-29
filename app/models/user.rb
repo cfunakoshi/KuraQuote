@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :vehicles
   has_one :coverage
   has_many :quotes
+
   
     attr_accessor :remember_token, :activation_token
     before_save { self.email = email.downcase }
@@ -16,7 +17,9 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
-class << self
+
+
+  class << self
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
