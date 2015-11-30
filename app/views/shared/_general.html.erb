@@ -1,5 +1,8 @@
               <% if @basicinfo == nil %>
-      <%= link_to "Add to Basic info", basicinfosnew_path, class: "btn btn-lg btn-primary" %>
+<% if current_user.agent != true || @user == current_user %>
+                <%= link_to "Add to Basic info", basicinfosnew_path, class: "btn btn-lg btn-primary" %>
+                <% else %>
+                <% end %>
         <% else %>
       <table class="table table-bordered">
         <% @user.basicinfos.each do |b| %>
@@ -14,5 +17,8 @@
         <tr><td><b>Zipcode:</b></td><td><%= b.zipcode %></tr>
          <% end %>
       </table>
+      <% if current_user.agent != true || @user == current_user %>
       <%= link_to "Edit Basic info", basicinfosedit_path, class: "btn btn-lg btn-primary" %>
+      <% else %>
+      <% end %>
       <% end %>

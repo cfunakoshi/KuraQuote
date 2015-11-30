@@ -10,15 +10,19 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find(params[:id])
+    if @user != current_user && current_user.agent != true
+      flash[:danger] = "The page you requested is denied."
+      redirect_to current_user
+    else
     @basicinfo = Basicinfo.find_by_user_id (params[:id])
     @vehicle = Vehicle.find_by_user_id (params[:id])
     @vehiclecount = 1
-    @coverage = Coverage.find_by_user_id (current_user.id)
+      @coverage = Coverage.find_by_user_id (params[:id])
+    end
   end
   
    def create
     @user = User.new(user_params)
-    ## @agentuser = User.new(agentuser_params)
     if @user.save
       #UserMailer.registration_confirmation(@user).deliver
       log_in @user
@@ -28,11 +32,6 @@ class UsersController < ApplicationController
       flash[:error] = "Oops, something went wrong!"
       render 'new'
     end
-    # if @agentuser.save
-       #flash[:success] = "User Added!"
-   # else
- #     flash[:error] = "Oops, something went wrong!"
- #    end
   end
   
     def edit
@@ -50,14 +49,46 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page])
-   # @agentuser = User.new
+    @agentsclients = User.all
+    @clients = Array.new
+    @agentsclients.each do |users|
+      if users.agent_id == current_user.id
+        @clients.push(users)
+      end
+    end
+        
   end
   
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User Deleted"
     redirect_to index_path
+  end
+  
+  def client 
+    @user = User.all
+  end
+  
+  def add
+    @user = User.all
+    @someuser = false
+    email = params[:theemail]
+    @user.each do |user|
+      if email == current_user.email
+        break
+        elsif email == user.email 
+        @someuser = true
+        user.update_attributes(agent_id: current_user.id)
+        flash[:success] = "Client Added!"
+        redirect_to index_path
+        break
+      else
+      end
+    end
+    if @someuser == false
+        flash[:danger] = "Client Not Found"
+        redirect_to index_path
+    end
   end
   
   #def confirm_email

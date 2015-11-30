@@ -1,17 +1,23 @@
 <% if @vehicle == nil %>
+<% if current_user.agent != true || @user == current_user %>
 <%= link_to "Add New Vehicle", vehiclenew_path, class: "btn btn-lg btn-primary" %>
+ <% else %>
+ <% end %>
  <% else %>
         <% @user.vehicles.each do |b| %>
          <b>Vehicle <%= @vehiclecount %></b>
            <table class="table table-bordered">
+             <tr><td><b>Year:</b></td><td><%= b.year %></tr>
               <tr><td><b>Manufacturer:</b></td><td><%= b.manufacturer %></td></tr>
               <tr><td><b>Model:</b></td><td><%= b.model %></tr>
               <tr><td><b>Specification:</b></td><td><%= b.specs %></tr>
               <tr><td><b>Usage:</b></td><td><%= b.use %></tr>
-              <tr><td><b>VIN Number:</b></td><td><%= b.vin %></tr>
             </table>
          <% @vehiclecount += 1 %>
         <% end %>
+<% if current_user.agent != true || @user == current_user %>
   <%= link_to "Add Vehicle", vehiclenew_path, class: "btn btn-lg btn-primary" %>
 <%= link_to "Delete Vehicle", vehicleedit_path, class: "btn btn-lg btn-primary" %>
+ <% else %>
+ <% end %>
 <% end %>

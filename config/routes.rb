@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   get 'comparators/show'
   get 'quotes/create'
   get 'insurer/index'
-  get 'agents/new'
-  get 'agents/index'
   root 'staticpages#start'
   get 'sessions/new'
   get 'users/new'
@@ -32,6 +30,7 @@ Rails.application.routes.draw do
   get 'home' => 'staticpages#home'
   get 'users' =>  'users#show'
   get 'index' => 'users#index'
+    get 'client' => 'users#client'
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
@@ -46,6 +45,10 @@ Rails.application.routes.draw do
       get :confirm_email
     end
   end
+  
+  resources :users do post :add, :on=>:collection
+  end
+  
   
   resources :basicinfos
   resources :vehiclemanufacturers

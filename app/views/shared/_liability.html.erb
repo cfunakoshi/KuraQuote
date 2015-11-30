@@ -1,5 +1,8 @@
 <% if @coverage == nil %>
+<% if current_user.agent != true || @user == current_user %>
 <%= link_to "Choose Preferred Policy", coveragenew_path, class: "btn btn-lg btn-primary" %>
+ <% else %>
+  <% end %>
  <% else %>
            <table class="table table-bordered">
              <tr><td><b>Bodily Injury:</b></td><td><%= @coverage.bodilyinjury %></td></tr>
@@ -11,5 +14,8 @@
              <tr><td><b>Collision:</b></td><td><%= @coverage.collision %></tr>
              <tr><td><b>Comprehensive:</b></td><td><%= @coverage.comprehensive %></tr>
             </table>
+<% if current_user.agent != true || @user == current_user %>
 <%= link_to "Edit Policy", coverageedit_path, class: "btn btn-lg btn-primary" %>
+ <% else %>
+ <% end %>
 <% end %>

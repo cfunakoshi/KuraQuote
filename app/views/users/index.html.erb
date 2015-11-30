@@ -1,9 +1,9 @@
 <% provide(:title, 'All users') %>
-<% if current_user.admin? %>
+<% if current_user.agent? %>
 <h1>Clients</h1>
-
-<%= will_paginate %>
-
+<% if @clients == nil %>
+<%= link_to "Add Client", client_path, class: "btn btn-lg btn-primary" %>
+<% else %>
 <div class="table1">
 <table class="table table-hover">
   <thead>
@@ -14,21 +14,19 @@
     </tr>
    </thead>
    <tbody>
-  <% @users.each do |user| %>
+     <% @clients.each do |user| %>
     <tr>
-      <% if !current_user?(user) %>
       <td>
       <%= link_to user.name, user %>
       </td>
-      <td><%= link_to user.email, user %><% end %></td>
-        <% if current_user.admin? && !current_user?(user) %>
+      <td><%= link_to user.email, user %></td>
       <td><%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %></td>
-        <% end %>
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
+<%= link_to "Add Client", client_path, class: "btn btn-lg btn-primary" %>
 <!-- Trigger the modal with a button 
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
@@ -68,8 +66,7 @@
   </div>
 </div> -->
 </div>
-
-<%= will_paginate %>
+<% end %>
 
 <% else %>
 <%= render "shared/errorpage_message" %>

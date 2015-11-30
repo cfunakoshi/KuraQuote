@@ -26,6 +26,10 @@ class CoveragesController < ApplicationController
   
   def edit
     @user = current_user
+    if Coverage.find_by_user_id(@user.id) == nil
+      flash[:danger] = "Oops, something went wrong!"
+      redirect_to current_user
+    else
     Coverage.find_by_user_id(@user.id).destroy
     @coverage = Coverage.new
                 @bi = Bodilyinjury.all
@@ -36,6 +40,7 @@ class CoveragesController < ApplicationController
     @pd = Propertydamage.all
     @undermotor = Undermotorist.all
     @unmotor = Unmotorist.all
+    end
   end
   
   def update
