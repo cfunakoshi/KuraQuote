@@ -65,7 +65,7 @@
              <% end %>
            <% end %></td></tr>
     
-    <tr><td style="text-align:left">Personal Injury Protection</td><td><%= @quote.piprotection %></td><td></td><td><% @piparray.each do |i| %>
+    <tr><td style="text-align:left">Personal Injury Protection</td><td><%= @quote.piprotection %></td><td><%= "#{@quote.pideductible}" %></td><td><% @piparray.each do |i| %>
         <% if i.companylist_id == @quote.companylist_id %>
             <p>+<%=i.price%></p>
         <% @total += i.price %>

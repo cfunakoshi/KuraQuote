@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129192704) do
+ActiveRecord::Schema.define(version: 20151201200626) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20151129192704) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "active"
+    t.string   "active"
   end
 
   create_table "comprehensives", force: :cascade do |t|
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20151129192704) do
     t.text     "underinsuredunstacked"
     t.text     "underinsuredstacked"
     t.text     "piprotection"
-    t.integer  "pideductible"
+    t.text     "pideductible"
     t.integer  "collision"
     t.integer  "comprehensive"
     t.integer  "user_id"
@@ -181,6 +181,17 @@ ActiveRecord::Schema.define(version: 20151129192704) do
     t.integer  "companylist_id"
   end
 
+  create_table "tradewindcomprehensives", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "sym_code"
+    t.text     "year"
+    t.integer  "companylist_id"
+    t.integer  "vehiclevin_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "deductible"
+  end
+
   create_table "tradewindpds", force: :cascade do |t|
     t.integer  "price"
     t.integer  "propertydamage_id"
@@ -195,7 +206,7 @@ ActiveRecord::Schema.define(version: 20151129192704) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "companylist_id"
-    t.integer  "deductible"
+    t.text     "deductible"
   end
 
   create_table "tradewindundermotors", force: :cascade do |t|
@@ -280,9 +291,11 @@ ActiveRecord::Schema.define(version: 20151129192704) do
 
   create_table "vehiclespecs", force: :cascade do |t|
     t.text     "specifications"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "user_id"
+    t.integer  "vehiclemanufacturer_id"
+    t.integer  "vehiclemodel_id"
   end
 
   create_table "vehicleuses", force: :cascade do |t|

@@ -1,12 +1,28 @@
-<div id="companylist">
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <% @companylist.each do |c| %>
-    <li><%= link_to c.name %></li>
-    <li class="divider"></li>
-    <% end %>
-  </ul>
-</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <br>
+    <br>
+    <br>
+  <%= form_tag :controller => :comparators, :action => :update do %>
+<table style = "width: 100%">
+      <tr>
+        <td><%=image_tag("companies.jpg", size: "100x100", alt: "Horrible Insurance")%></td>
+        <td><%=image_tag("tradewind.png", size: "200x100", alt: "Tradewind Insurance Company")%></td>
+    </tr>
+  <tr>
+  <% @companylist.each do |company| %>
+    <td style="text-align:center; padding-top:2em"><%= company.name %></td>
+<% end %>
+  </tr>
+        <tr>
+          <td style="padding-top: 2em; padding-left:6.5em"><%= check_box_tag "company1"%></td><td style="padding-top: 2em; padding-left:11em"><%= check_box_tag "company2"%></td>
+      </tr>
+  </table>
+    <br>
+    <br>
+    <br>
+    <br>
+  <%= submit_tag "Add Companies", class: "btn btn-primary" %>
+  <% end %>
+  </div>
 </div>

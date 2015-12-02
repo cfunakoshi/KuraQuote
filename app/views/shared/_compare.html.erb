@@ -1,11 +1,13 @@
 <br>
 <br>
 <p>(Based On Your Preferred Policy)</p>
+<% if Companylist.first.active == "0" && Companylist.second.active == "0"%>
+<% else %>
       <table class="table table-bordered">
         <tr>
           <td><b>Company Name:</b></td>
           <% @companylist.each do |c| %>  
-          <% if c.active == true %>
+          <% if c.active == "1" %>
             <td><%=c.name%></td> 
           <% end %>
           <% end %>
@@ -14,11 +16,11 @@
           <td><b>Bodily Injury:<b></td>
            <% @biarray.each do |i| %>
             <% if i == nil %>
-            <% if @companylist.find(@bicount).active == true %>
+            <% if @companylist.find(@bicount).active == "1" %>
             <td><p>N/A</p></td>
             <% @total[@bicount] += 1 %>
             <% end %>
-            <% elsif i.companylist_id == @bicount && @companylist.find(@bicount).active == true %>
+            <% elsif i.companylist_id == @bicount && @companylist.find(@bicount).active == "1" %>
             <td><p>+<%=i.price%></p></td>
             <% @total[@bicount] += i.price %>
             <% else %>
@@ -30,10 +32,10 @@
          <td><b>Property Damage:</b></td>
          <% @pdarray.each do |i| %>
           <% if i == nil %>
-             <% if @companylist.find(@pdcount).active == true %>
+             <% if @companylist.find(@pdcount).active == "1" %>
                <td><p>N/A</p></td>
              <% end %>
-         <%elsif i.companylist_id == @pdcount  && @companylist.find(@pdcount).active == true  %>
+         <%elsif i.companylist_id == @pdcount  && @companylist.find(@pdcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
          <% @total[@pdcount] += i.price %>
          <% else %>
@@ -45,10 +47,10 @@
          <td><b>Personal Injury Protection:</b></td>
          <% @piparray.each do |i| %>
           <% if i == nil %>
-             <% if @companylist.find(@pipcount).active == true %>
+             <% if @companylist.find(@pipcount).active == "1" %>
                <td><p>N/A</p></td>
              <% end %>
-         <%elsif i.companylist_id == @pipcount  && @companylist.find(@pipcount).active == true  %>
+         <%elsif i.companylist_id == @pipcount  && @companylist.find(@pipcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
          <% @total[@pipcount] += i.price %>
          <% else %>
@@ -60,10 +62,10 @@
               <td><b>Uninsured Motorist:</b></td>
          <% @unmotorarray.each do |i| %>
           <% if i == nil %>
-             <% if @companylist.find(@unmotorcount).active == true %>
+             <% if @companylist.find(@unmotorcount).active == "1" %>
                <td><p>N/A</p></td>
              <% end %>
-         <%elsif i.companylist_id == @unmotorcount  && @companylist.find(@unmotorcount).active == true  %>
+         <%elsif i.companylist_id == @unmotorcount  && @companylist.find(@unmotorcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
          <% @total[@unmotorcount] += i.price %>
          <% else %>
@@ -75,10 +77,10 @@
               <td><b>Under Insured Motorist:</b></td>
             <% @undermotorarray.each do |i| %>
           <% if i == nil %>
-            <% if @companylist.find(@undermotorcount).active == true %>
+            <% if @companylist.find(@undermotorcount).active == "1" %>
                <td><p>N/A</p></td>
              <% end %>
-            <%elsif i.companylist_id == @undermotorcount  && @companylist.find(@undermotorcount).active == true  %>
+            <%elsif i.companylist_id == @undermotorcount  && @companylist.find(@undermotorcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
             <% @total[@undermotorcount] += i.price %>
          <% else %>
@@ -98,3 +100,5 @@
          <% end %>
         </tr>
       </table>
+        <% end %>
+        

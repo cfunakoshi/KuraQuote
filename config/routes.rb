@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'newquote' => 'quotes#new'
   get 'editquote' => 'quotes#edit'
   post 'print' => 'quotes#print'
+  post 'comparators/update'
   
 
   resources :users do
@@ -48,7 +49,7 @@ Rails.application.routes.draw do
   
   resources :users do post :add, :on=>:collection
   end
-  
+
   
   resources :basicinfos
   resources :vehiclemanufacturers

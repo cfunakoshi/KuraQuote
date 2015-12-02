@@ -60,6 +60,7 @@ class QuotesController < ApplicationController
       @bi = Bodilyinjury.find_by_limit(@quote.bodilyinjury)
       @pd = Propertydamage.find_by_limit(@quote.propertydamage)
       @pip = Piprotection.find_by_limit(@quote.piprotection)
+        @pideductible = Pideductible.find_by_deductible(@quote.pideductible)
       @unmotor = Unmotorist.find_by_unstacked(@quote.uninsuredunstacked)
       @undermotor = Undermotorist.find_by_unstacked(@quote.underinsuredunstacked)
       @biarray = [ Horribleinsurancebi.find_by_bodilyinjury_id(@bi.id), Tradewindbi.find_by_bodilyinjury_id(@bi.id) ]

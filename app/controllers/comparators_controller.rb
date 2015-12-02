@@ -7,6 +7,13 @@ class ComparatorsController < ApplicationController
     @user = current_user
     @quote = Quote.find_by_user_id(current_user.id)
     @companylist = Companylist.all
+    if Companylist.first.active == "0" && Companylist.second.active == "0"
+      @general = "active"
+      @liability = ""
+    else
+      @general = ""
+      @liability = "active"
+    end      
     @presence = 0
     @quotecount = @bicount = @pdcount = @pipcount = @unmotorcount = @undermotorcount = 1
     @total = Array.new(10, 0)
@@ -33,5 +40,27 @@ class ComparatorsController < ApplicationController
     end
 end
  
+  def update
+    @companylist = Companylist.all
+    company1 = params[:company1]
+    company2 = params[:company2]
+      if  company1 == nil
+        Companylist.first.update_attributes(active: "0")
+        elsif company1[0] == "1"
+       Companylist.first.update_attributes(active: "1")
+      else
+        Companylist.first.update_attributes(active: "0")
+      end
+       if  company2 == nil
+         Companylist.second.update_attributes(active: "0")
+         elsif company2[0] == "1"
+         Companylist.second.update_attributes(active: "1")
+      else
+         Companylist.second.update_attributes(active: "0")
+      end    
+    flash[:somval] = ""
+    @liability = "active"
+    redirect_to comparator_path
+  end
   
 end
