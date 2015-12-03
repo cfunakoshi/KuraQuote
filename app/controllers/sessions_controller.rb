@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
         log_in user
       @user = current_user.name
       flash[:success] = "Welcome Back #@user !"
+      Companylist.update_all(active: "0")
         redirect_back_or home_path
      # else
       #  flash.now[:error] = 'Please activate your account by following the 

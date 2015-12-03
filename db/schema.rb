@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201200626) do
+ActiveRecord::Schema.define(version: 20151203024227) do
 
   create_table "basicinfos", force: :cascade do |t|
     t.integer  "user_id"
@@ -72,6 +72,27 @@ ActiveRecord::Schema.define(version: 20151201200626) do
     t.integer  "user_id"
   end
 
+  create_table "horriblecolls", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "sym_code"
+    t.text     "year"
+    t.integer  "companylist_id"
+    t.integer  "deductible"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "horriblecomps", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "sym_code"
+    t.text     "year"
+    t.integer  "companylist_id"
+    t.integer  "vehiclevin_id"
+    t.integer  "deductible"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "horribleinsurancebis", force: :cascade do |t|
     t.integer  "price"
     t.integer  "bodilyinjury_id"
@@ -121,6 +142,17 @@ ActiveRecord::Schema.define(version: 20151201200626) do
     t.integer  "companylist_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "lookups", force: :cascade do |t|
+    t.string   "manufacturer"
+    t.string   "model"
+    t.text     "specifications"
+    t.text     "vin"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.text     "year"
+    t.integer  "sym_code"
   end
 
   create_table "pideductibles", force: :cascade do |t|
@@ -179,6 +211,16 @@ ActiveRecord::Schema.define(version: 20151201200626) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "companylist_id"
+  end
+
+  create_table "tradewindcollisions", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "sym_code"
+    t.text     "year"
+    t.integer  "companylist_id"
+    t.integer  "deductible"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "tradewindcomprehensives", force: :cascade do |t|

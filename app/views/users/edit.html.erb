@@ -1,16 +1,11 @@
 <% provide(:title, "Edit user") %>
-<h1>Update Your Profile</h1>
-
+<h1>Change Your Password</h1>
+<br>
+<br>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
     <%= render 'shared/usererror_messages' %>
-
-    <%= f.label :name, "Profile Name" %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <%= f.label :email, "Email" %>
-      <%= f.email_field :email, class: 'form-control' %>
 
     <%= f.label :password, "Password" %>
       <%= f.password_field :password, class: 'form-control' %>

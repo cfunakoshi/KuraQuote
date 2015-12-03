@@ -25,10 +25,11 @@
 </div>
 
 <div>
+    <p>Quote for 1 year policy period:</p>
   <% @user.vehicles.each do |v| %>
-  <p>Quote for a 6 month policy period:</p>
+   <% total = 0 %>
   <br>
-  <p><b><%= v.year %> <%= v.manufacturer %> <%= v.model %><br><%= v.specs %> <%= v.specs %></b><br>Primary Use of the Vehicle: <%=v.use %></p>
+  <p><b><%= v.year %> <%= v.manufacturer %> <%= v.model %><br><%= v.specs %> </b><br>Primary Use of the Vehicle: <%=v.use %></p>
   <br><br>
   <table style = "width:100%; text-align:center">
       
@@ -36,7 +37,7 @@
       <tr><td style="text-align:left">Bodily Injury Liability</td><td><%= @quote.bodilyinjury %></td><td></td><td><% @biarray.each do |i| %>
         <% if i.companylist_id == @quote.companylist_id %>
             <p>+<%=i.price%></p>
-        <% @total += i.price %>
+        <% total += i.price %>
         <% else %>
              <% end %>
            <% end %></td></tr>
@@ -44,7 +45,7 @@
     <tr><td style="text-align:left">Property Damage Liability</td><td><%= @quote.propertydamage %></td><td></td><td><% @pdarray.each do |i| %>
         <% if i.companylist_id == @quote.companylist_id %>
             <p>+<%=i.price%></p>
-        <% @total += i.price %>
+        <% total += i.price %>
         <% else %>
              <% end %>
            <% end %></td></tr>
@@ -52,7 +53,7 @@
     <tr><td style="text-align:left">Uninsured Motorist</td><td><%= @quote.uninsuredunstacked %></td><td></td><td><% @unmotorarray.each do |i| %>
         <% if i.companylist_id == @quote.companylist_id %>
             <p>+<%=i.price%></p>
-        <% @total += i.price %>
+        <% total += i.price %>
         <% else %>
              <% end %>
            <% end %></td></tr>
@@ -60,7 +61,7 @@
     <tr><td style="text-align:left">Underinsured Motorist</td><td><%= @quote.underinsuredunstacked %></td><td></td><td><% @undermotorarray.each do |i| %>
         <% if i.companylist_id == @quote.companylist_id %>
             <p>+<%=i.price%></p>
-        <% @total += i.price %>
+        <% total += i.price %>
         <% else %>
              <% end %>
            <% end %></td></tr>
@@ -68,21 +69,60 @@
     <tr><td style="text-align:left">Personal Injury Protection</td><td><%= @quote.piprotection %></td><td><%= "#{@quote.pideductible}" %></td><td><% @piparray.each do |i| %>
         <% if i.companylist_id == @quote.companylist_id %>
             <p>+<%=i.price%></p>
-        <% @total += i.price %>
+        <% total += i.price %>
         <% else %>
              <% end %>
            <% end %></td></tr>
     
-    <tr><td style="text-align:left">Collision</td><td></td><td><%= @quote.collision %></td></tr>
+    <tr><td style="text-align:left">Collision</td><td></td><td><%= @quote.collision %></td><td><% s = 0 %>
+              <% y = "" %>
+              <% @user.vehicles.each do |v| %>
+               <% s = @vehicle.where("year = ? AND manufacturer = ? AND model = ? AND specifications = ?", v.year, v.manufacturer, v.model, v.specs).first.sym_code%> 
+              <% y = v.year %>
+              <% end %>
+              
+              <% @collarray.each do |i| %>
+                  <% i.each do |l| %>
+      <%if l.companylist_id == @quote.companylist_id  %>              
+                        <% if l.year == "#{y}" && l.sym_code == s %>              
+                          <p>+<%= l.price%></p>                     
+                          <% total += l.price %>
+                        <%end %>                    
+                       <% else %>
+                 <% end %>            
+               <% end %>
+              <% end %></td></tr>
     
-    <tr><td style="text-align:left">Comprehensive</td><td></td><td><%= @quote.comprehensive %></td></tr>
+    <tr><td style="text-align:left">Comprehensive</td><td></td><td><%= @quote.comprehensive %></td><td><% s = 0 %>
+              <% y = "" %>
+              <% @user.vehicles.each do |v| %>
+               <% s = @vehicle.where("year = ? AND manufacturer = ? AND model = ? AND specifications = ?", v.year, v.manufacturer, v.model, v.specs).first.sym_code%> 
+              <% y = v.year %>
+              <% end %>
+              
+              <% @comparray.each do |i| %>
+                  <% i.each do |l| %>
+      <%if l.companylist_id == @quote.companylist_id  %>              
+                        <% if l.year == "#{y}" && l.sym_code == s %>              
+                          <p>+<%= l.price%></p>                     
+                          <% total += l.price %>
+                        <%end %>                    
+                       <% else %>
+                 <% end %>            
+               <% end %>
+              <% end %></td></tr>
     <tr><td><p></p></td><td><p> </p></td><td><p> </p></td><td><p> </p></td></tr>
-    <tr><td style="text-align:left"><b>Total Premium</b></td><td></td><td></td><td><b>=<%= @total %></b></td></tr>
+    <tr><td style="text-align:left"><b>Total Premium</b></td><td></td><td></td><td><b>= <%= total %></b></td></tr>
   </table>
-  <% end %>
+   <br>
   <br>
   <small>*Limits x $1,000<br>
     **Per Person/Per Accident</small> 
+  <br>
+  <br>
+  <br>
+  <br>
+  <% end %>
   <br>
   <br>
   <br>

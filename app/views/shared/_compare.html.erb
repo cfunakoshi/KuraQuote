@@ -1,8 +1,19 @@
 <br>
 <br>
 <p>(Based On Your Preferred Policy)</p>
+<br>
 <% if Companylist.first.active == "0" && Companylist.second.active == "0"%>
 <% else %>
+              <% s = 0 %>
+              <% y = "" %>
+              <% @user.vehicles.each do |v| %>
+               <%total = Array.new(10, 0) %>
+  <p><b><%= v.year %> <%= v.manufacturer %> <%= v.model %><br><%= v.specs %> </b><br>Primary Use of the Vehicle: <%=v.use %></p>
+              <% @quotecount = @bicount = @pdcount = @pipcount = @unmotorcount = @undermotorcount = @compcount = @collisioncount = 1 %>
+              
+              <% s = @vehicle.where("year = ? AND manufacturer = ? AND model = ? AND specifications = ?", v.year, v.manufacturer, v.model, v.specs).first.sym_code%> 
+              <% y = v.year %>
+
       <table class="table table-bordered">
         <tr>
           <td><b>Company Name:</b></td>
@@ -18,11 +29,11 @@
             <% if i == nil %>
             <% if @companylist.find(@bicount).active == "1" %>
             <td><p>N/A</p></td>
-            <% @total[@bicount] += 1 %>
+            <% total[@bicount] += 1 %>
             <% end %>
             <% elsif i.companylist_id == @bicount && @companylist.find(@bicount).active == "1" %>
             <td><p>+<%=i.price%></p></td>
-            <% @total[@bicount] += i.price %>
+            <% total[@bicount] += i.price %>
             <% else %>
              <% end %>
              <% @bicount += 1 %>
@@ -37,7 +48,7 @@
              <% end %>
          <%elsif i.companylist_id == @pdcount  && @companylist.find(@pdcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
-         <% @total[@pdcount] += i.price %>
+         <% total[@pdcount] += i.price %>
          <% else %>
          <% end %>
          <% @pdcount += 1 %>
@@ -52,7 +63,7 @@
              <% end %>
          <%elsif i.companylist_id == @pipcount  && @companylist.find(@pipcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
-         <% @total[@pipcount] += i.price %>
+         <% total[@pipcount] += i.price %>
          <% else %>
          <% end %>
          <% @pipcount += 1 %>
@@ -67,7 +78,7 @@
              <% end %>
          <%elsif i.companylist_id == @unmotorcount  && @companylist.find(@unmotorcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
-         <% @total[@unmotorcount] += i.price %>
+         <% total[@unmotorcount] += i.price %>
          <% else %>
          <% end %>
          <% @unmotorcount += 1 %>
@@ -82,15 +93,65 @@
              <% end %>
             <%elsif i.companylist_id == @undermotorcount  && @companylist.find(@undermotorcount).active == "1"  %>
          <td><p>+<%=i.price%></p></td>
-            <% @total[@undermotorcount] += i.price %>
+            <% total[@undermotorcount] += i.price %>
          <% else %>
          <% end %>
             <% @undermotorcount += 1 %>
          <% end %>
             </tr>
+            <tr>
+              <td><b>Collision:</b></td>
+              <% @collarray.each do |i| %>
+              <% if i[@collisioncount -1 ] == nil %>
+                <% if @companylist.find(@collisioncount).active == "1" %>
+                   <td><p>N/A</p></td>                      
+                   <% end %>
+                <% else %>
+                  <% i.each do |l| %>
+                    <% if l == nil %>
+                       <% if @companylist.find(@collisioncount).active == "1" %>
+                         <td><p>N/A</p></td>                      
+                       <% end %>
+                    <%elsif l.companylist_id == @collisioncount  && @companylist.find(@collisioncount).active == "1"  %> 
+                      <% if l.year == "#{y}"  && l.sym_code == s %> 
+                        <td><p>+<%= l.price%></p></td>                      
+                        <% total[@collisioncount] += l.price %>
+                      <%end %>                    
+                    <% else %>
+                     <% end %>            
+                 <% end %>
+                <% end %>
+               <% @collisioncount += 1 %>
+              <% end %>
+            </tr>
+            <tr>
+              <td><b>Comprehensive:</b></td>             
+              <% @comparray.each do |i| %>
+                <% if i[@compcount -1 ] == nil %>
+                   <% if @companylist.find(@compcount).active == "1" %>
+                     <td><p>N/A</p></td>                      
+                   <% end %>
+                <% else %>
+                  <% i.each do |l| %>
+                       <% if l == nil %>
+                         <% if @companylist.find(@compcount).active == "1" %>
+                             <td><p>N/A</p></td>                      
+                         <% end %>
+                       <%elsif l.companylist_id == @compcount  && @companylist.find(@compcount).active == "1"  %>              
+                        <% if l.year == "#{y}" && l.sym_code == s %>              
+                          <td><p>+<%= l.price%></p></td>                      
+                          <% total[@compcount] += l.price %>
+                        <%end %>                    
+                       <% else %>
+                       <% end %>
+                 <% end %>            
+               <% end %>
+               <% @compcount += 1 %>
+              <% end %>
+            </tr>
        <tr>
          <td><b>Total Price:</b></td>
-         <% @total.each do |i| %>
+         <% total.each do |i| %>
          <% if i > 1 %>
          <td><b>= <%=i%></b></td>
          <% elsif i == 1  %>
@@ -100,5 +161,9 @@
          <% end %>
         </tr>
       </table>
+        <br>
+<br>
+<br>
+        <% end %>
         <% end %>
         

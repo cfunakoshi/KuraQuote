@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 1
+  sym_code: 1
+  year: MyText
+  companylist_id: 1
+  vehiclevin_id: 1
+  deductible: 1
+
+two:
+  price: 1
+  sym_code: 1
+  year: MyText
+  companylist_id: 1
+  vehiclevin_id: 1
+  deductible: 1

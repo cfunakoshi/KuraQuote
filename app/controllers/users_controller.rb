@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(edit_params)
       flash[:success] = "Your profile has been updated!"
       redirect_to @user
     else
@@ -109,6 +109,11 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
         :password_confirmation, :agent_id)
+    end
+  
+    def edit_params
+      params.require(:user).permit(:password,
+        :password_confirmation)
     end
   
   #def agentuser_params
