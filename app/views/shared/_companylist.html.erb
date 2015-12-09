@@ -4,18 +4,18 @@
     <br>
     <br>
   <%= form_tag :controller => :comparators, :action => :update do %>
-<table style = "width: 100%">
+<table style = "width: 100%; background-color: #FEFCE8">
       <tr>
-        <td><%=image_tag("companies.jpg", size: "100x100", alt: "Horrible Insurance")%></td>
-        <td><%=image_tag("tradewind.png", size: "200x100", alt: "Tradewind Insurance Company")%></td>
+        <td style="background-color: #FEFCE8"><%=image_tag("companies.jpg", size: "100x100", alt: "Horrible Insurance")%></td>
+        <td style="background-color: #FEFCE8"><%=image_tag("tradewind.png", size: "200x100", alt: "Tradewind Insurance Company")%></td>
     </tr>
   <tr>
   <% @companylist.each do |company| %>
-    <td style="text-align:center; padding-top:2em"><%= company.name %></td>
+    <td style="text-align:center; padding-top:2em; background-color: #FEFCE8"><%= company.name %></td>
 <% end %>
   </tr>
         <tr>
-          <td style="padding-top: 2em; padding-left:6.5em"><%= check_box_tag "company1"%></td><td style="padding-top: 2em; padding-left:11em"><%= check_box_tag "company2"%></td>
+          <td style="padding-top: 2em; padding-left:6.5em; background-color: #FEFCE8"><%= check_box_tag "company1"%></td><td style="padding-top: 2em; padding-left:11em; background-color: #FEFCE8"><%= check_box_tag "company2"%></td>
       </tr>
   </table>
     <br>
